@@ -38,14 +38,14 @@ set -ag status-right " "
 set -g status-justify centre
 setw -g window-status-style bg=white
 setw -g window-status-format "#I#(printf %%1s #F)#W"
-setw -g window-status-current-style bold,bg=cyan
+setw -g window-status-current-style bold,bg=green
 setw -g window-status-current-format "#W"
 setw -g window-status-separator " "
 setw -g window-status-last-style fg=black,bold
-setw -g window-status-bell-style fg=cyan
+setw -g window-status-bell-style fg=green
 
 set -g pane-border-style fg=white
-set -g pane-active-border-style fg=cyan
+set -g pane-active-border-style fg=green
 
 set -g clock-mode-style 24
 set -g clock-mode-color white

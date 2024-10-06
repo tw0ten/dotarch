@@ -17,7 +17,7 @@ export blue=$(tput setaf 4)
 export magenta=$(tput setaf 5)
 export cyan=$(tput setaf 6)
 export white=$(tput setaf 7)
-export accent="$cyan"
+export accent="$green"
 export bell=$(tput bel)
 eval "$(dircolors)"
 
@@ -36,25 +36,9 @@ export HISTIGNORE='ls:lsa:history*'
 export HISTFILESIZE=-1
 export HISTSIZE=-1
 
-export TERMINAL='st'
 export EDITOR='nvim'
 export PAGER='less -FXR'
-export BROWSER='firefox'
 
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 
 echo "$(date) $USER $(tty) $SHLVL" >> ~/.auth
-
-[[ $(who | grep -cw "^$USER") = 1 ]] || return $(true)
-
-while true; do
-	echo -e "$bold$cyan\nstart[x]$yellow\n[p]acman -Syu$red\n[e]xit$normal\n[c]ancel"
-	read -rs -n1 opt || break
-	case "$opt" in
-		'x') startx ;;
-		'p') sudo pacman -Syu ;;
-		'e') exit ;;
-		'c') break ;;
-		*) mhm ;;
-	esac
-done

@@ -16,23 +16,6 @@ PS1="$(
 	echo "$r$PS1"
 )"
 
-mklc() {
-	local d="$DOTFILES/etc/lc"
-	cp -i "$d/$1" LICENSE || { ls "$d"; return $(false); }
-	sed -i "0,/{YEAR}/s//$(\date +'%Y')/" LICENSE
-	sed -i "0,/{NAME}/s//$(git config --get user.name)/" LICENSE
-	sed -i "0,/{EMAIL}/s//$(git config --get user.email)/" LICENSE
-	head -n 5 LICENSE
-}
-mktl() {
-	mkdir "$1" && cd "$1" || return
-	mkdir src lib io io/i
-	echo 'io/o' > .gitignore
-	echo "# $1" > README.md
-	echo -e '#!/bin/sh\nrm -rf io/o\nmkdir io/o\n\ncd io\ncd o' > run
-	chmod +x run && ./run
-	git init
-}
 minifetch() { echo "$(tty):$SHLVL '$-'" | fastfetch -C ~/.config/fastfetch/mini.jsonc; }
 ff() { find . -name "*$**" 2>/dev/null | $PAGER; }
 mhm() { fortune | cowsay -n -f "$(cowsay -l | grep / -v | tr " " "\n" | shuf -n1)" | lolcat; }
